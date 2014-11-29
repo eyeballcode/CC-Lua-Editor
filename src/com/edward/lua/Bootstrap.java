@@ -20,6 +20,7 @@ public class Bootstrap {
 		System.out.println("[INFO] "+new Date()+": Checking Java version!");
 		if(Utils.checkjVersion(6)) {
 		System.out.println("[INFO] "+new Date()+": Java version good!");
+		new BootstrapScreen();
 		new MainGIFScreen();
 		}
 	}
