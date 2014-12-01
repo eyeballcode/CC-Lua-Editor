@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class Loader extends JFrame {
+	JTextField tfPrivate = null;
 	JTextField tf = null;
 	/**
 	 * 
@@ -32,6 +33,7 @@ public class Loader extends JFrame {
 
 			@Override
 			public void setBorder(Border b) {
+				
 			}
 		};
 		done.setBackground(new Color(204, 76, 76));
@@ -45,21 +47,23 @@ public class Loader extends JFrame {
 
 	private JTextField tf() {
 
-		tf = new JTextField() {
+		tfPrivate = new JTextField() {
 			private static final long serialVersionUID = 1L;
-
+			
 			@Override
-			public void setBorder(Border border) {
+			public void setBorder(Border b) {
+				
 			}
+			
 		};
 
-		tf.setBackground(Color.BLACK);
-		tf.setForeground(Color.WHITE);
-		tf.setVisible(true);
-		tf.setSize(new Dimension(305, 50));
-		tf.setLocation(340, 21);
-		tf.setFont(new Font("Minecraftia", Font.PLAIN, 17));
-		return tf;
+		tfPrivate.setBackground(Color.BLACK);
+		tfPrivate.setForeground(Color.WHITE);
+		tfPrivate.setVisible(true);
+		tfPrivate.setSize(new Dimension(305, 50));
+		tfPrivate.setLocation(340, 21);
+		tfPrivate.setFont(new Font("Minecraftia", Font.PLAIN, 17));
+		return tfPrivate;
 	}
 
 	private JLabel label() {
@@ -76,25 +80,29 @@ public class Loader extends JFrame {
 		setUndecorated(false);
 		setContentPane(new JLabel(new ImageIcon(getClass().getResource(
 				"ComBorder.png"))));
-		add(label());
-		add(tf());
 	}
 
 	public Loader() {
 		JButton done = done();
+		setUpGUI();
+		add(label());
+		tf = tf();
 		done.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!tf.getText().equals("")) {
-					System.out.println("Project name is: " + tf.getText());
+				String text = tf.getText();
+				if (!text.trim().equals("")) {
+					System.out.println("Project name is: " + text);
 				} else {
-					System.out.println("Project name cannot be empty");
+					System.out.println("Project name cannot be empty or be spaces");
+					tf.setText("");
+					tf.requestFocus();
 				}
 			}
 
 		});
-		setUpGUI();
+		add(tf);
 		add(done);
 		pack();
 		setVisible(true);
