@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import com.edward.lua.Loader;
+import com.edward.lua.NewProjectManager;
 
 public class MainGIFScreen extends JFrame {
 
@@ -45,7 +46,8 @@ public class MainGIFScreen extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("new");
+					dispose();
+					new NewProjectManager();
 				}
 
 			});

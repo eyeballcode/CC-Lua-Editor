@@ -2,13 +2,9 @@ package com.edward.lua;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Point;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-public class Loader extends JFrame {
+public class NewProjectManager extends JFrame {
 	JTextField tfPrivate = null;
 	JTextField tf = null;
 	/**
@@ -81,7 +77,7 @@ public class Loader extends JFrame {
 				"ComBorder.png"))));
 	}
 
-	public Loader() {
+	public NewProjectManager() {
 		JButton done = done();
 		setUpGUI();
 		add(label());
@@ -108,5 +104,4 @@ public class Loader extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-
 }
