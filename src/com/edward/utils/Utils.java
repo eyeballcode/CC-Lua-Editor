@@ -1,5 +1,6 @@
 package com.edward.utils;
 
+import java.awt.Desktop;
 import java.lang.management.ManagementFactory;
 import java.net.URI;
 
@@ -15,20 +16,18 @@ public class Utils {
 		final int index = jvmName.indexOf('@');
 		if (index < 1) {
 			// part before '@' empty (index = 0) / '@' not found (index = -1)
-			System.gc();
+			
 			return fallback;
 		}
 
 		try {
-			String s = Long
-					.toString(Long.parseLong(jvmName.substring(0, index)));
-			fallback = Integer.parseInt(s);
-			System.gc();
+			fallback = Integer.parseInt(jvmName.substring(0, index));
+			
 			return fallback;
 		} catch (NumberFormatException e) {
 			// ignore
 		}
-		System.gc();
+		
 		return fallback;
 	}
 
@@ -42,30 +41,12 @@ public class Utils {
 
 	public static void openLink(URI paramURI) {
 		try {
-			Object localObject = Class.forName("java.awt.Desktop")
-					.getMethod("getDesktop", new Class[0])
-					.invoke(null, new Object[0]);
-			localObject.getClass()
-			.getMethod("browse", new Class[] { URI.class })
-			.invoke(localObject, new Object[] { paramURI });
+			Desktop d = Desktop.getDesktop();
+			d.browse(paramURI);
 		} catch (Throwable localThrowable) {
 			System.out.println("Failed to open link " + paramURI.toString());
 		}
-		System.gc();
-	}
-
-	public static void openLink(String string) {
-		try {
-			Object localObject = Class.forName("java.awt.Desktop")
-					.getMethod("getDesktop", new Class[0])
-					.invoke(null, new Object[0]);
-			localObject.getClass()
-			.getMethod("browse", new Class[] { URI.class })
-			.invoke(localObject, new Object[] { string });
-		} catch (Throwable localThrowable) {
-			System.out.println("Failed to open link " + string.toString());
-		}
-		System.gc();
+		
 	}
 
 	public ImageIcon createImageIcon(String path, String description) {
