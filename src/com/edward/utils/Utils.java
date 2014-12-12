@@ -1,6 +1,9 @@
 package com.edward.utils;
 
 import java.awt.Desktop;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.URI;
 
@@ -10,7 +13,17 @@ public class Utils {
 
 	private static String jvmName;
 	private static int fallback;
-
+	
+	public static void createFile(String path) {
+		File f = new File(path);
+		try {
+			FileWriter fw = new FileWriter(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static int getPID() {
 		jvmName = ManagementFactory.getRuntimeMXBean().getName();
 		final int index = jvmName.indexOf('@');
@@ -56,6 +69,15 @@ public class Utils {
 		} else {
 			System.err.println("Couldn't find file: " + path);
 			return null;
+		}
+	}
+
+	public static void writeToFile(File path, String text) {
+		try {
+			FileWriter fw = new FileWriter(path);
+			fw.write(text);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
