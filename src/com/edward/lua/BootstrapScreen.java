@@ -80,7 +80,7 @@ public class BootstrapScreen {
 				}
 
 			});
-			JLabel text = new JLabel("Left is Test, Right is image. Match? ");
+			JLabel text = new JLabel("Right is Test, Left is image. Match? ");
 			JLabel l = new JLabel("Test");
 			JLabel l1 = new JLabel();
 			l1.setIcon(new ImageIcon(getClass().getResource("test.png")));
