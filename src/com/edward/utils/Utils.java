@@ -9,8 +9,11 @@ import java.net.URI;
 
 import javax.swing.ImageIcon;
 
-public class Utils {
+import com.edward.lua.ProjectException;
 
+public class Utils {
+	
+	public static String workingDir = System.getProperty("user.home") + "/luaprojects/";
 	private static String jvmName;
 	private static int fallback;
 	
@@ -18,6 +21,7 @@ public class Utils {
 		File f = new File(path);
 		try {
 			FileWriter fw = new FileWriter(f);
+			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,8 +80,24 @@ public class Utils {
 		try {
 			FileWriter fw = new FileWriter(path);
 			fw.write(text);
+			fw.flush();
+			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public static void createFolder(String path) throws IOException {
+		File f = new File(path);
+		if (f.exists()) {
+			throw new IOException("Directory " + path + "already exists!");
+		}
+		f.mkdirs();
+	}
+
+	public static void checkFolderExists(String string) throws IOException {
+		if(!new File(string).exists()) {
+			throw new IOException("Folder: " + string + "does not exists!");
 		}
 	}
 

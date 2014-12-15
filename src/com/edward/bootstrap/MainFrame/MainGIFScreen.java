@@ -1,25 +1,18 @@
 package com.edward.bootstrap.MainFrame;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import com.edward.lua.Loader;
 import com.edward.lua.NewProjectManager;
 import com.edward.lua.OptionScreen;
+import com.edward.utils.EyeThrowableDealer;
 
 public class MainGIFScreen extends JFrame {
 
@@ -141,8 +134,9 @@ public class MainGIFScreen extends JFrame {
 			try {
 				Thread.sleep(600);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				EyeThrowableDealer etd = new EyeThrowableDealer();
+				etd.load(e);
+				etd.print();
 			}
 			menu();
 			pack();

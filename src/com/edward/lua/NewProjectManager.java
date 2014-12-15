@@ -5,15 +5,20 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import com.edward.bootstrap.MainFrame.MainGIFScreen;
+import com.edward.lua.editor.ProjectEditorScreen;
+import com.edward.utils.EyeThrowableDealer;
+import com.edward.utils.Utils;
 
 public class NewProjectManager extends JFrame {
 	JTextField tfPrivate = null;
@@ -53,7 +58,7 @@ public class NewProjectManager extends JFrame {
 			}
 			
 		};
-
+		
 		tfPrivate.setBackground(Color.BLACK);
 		tfPrivate.setForeground(Color.WHITE);
 		tfPrivate.setVisible(true);
@@ -117,9 +122,35 @@ public class NewProjectManager extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String text = tf.getText();
 				if (!text.trim().equals("")) {
+					try {
 					System.out.println("Project name is: " + text);
+					Utils.createFolder(Utils.workingDir+ "Workspace/" + text);
+					System.out.println("[INFO] " + new Date() + ": Making folder " + Utils.workingDir + "Workspace/" + text);
+					dispose();
+					new ProjectEditorScreen();
+					} catch (Exception e1) {
+						EyeThrowableDealer etd = new EyeThrowableDealer();
+						etd.load(e1);
+						etd.print();
+						JOptionPane.showMessageDialog(new JFrame(),
+							    "Project " + text + " already exists!",
+							    "ERROR",
+							    JOptionPane.ERROR_MESSAGE);
+						tf.requestFocus();
+					}
 				} else {
-					System.out.println("Project name cannot be empty or be spaces");
+					System.out.println("[ERROR] " + new Date() + ": Project name cannot be empty or be spaces!");
+					JOptionPane.showMessageDialog(new JFrame(),
+						    "Project name cannot be empty or be spaces!",
+						    "ERROR",
+						    JOptionPane.ERROR_MESSAGE);
+							try {
+								throw new ProjectException("Project name cannot be empty or be spaces!");
+							} catch (ProjectException e1) {
+								EyeThrowableDealer etd = new EyeThrowableDealer();
+								etd.load(e1);
+								etd.print();
+							}
 					tf.setText("");
 					tf.requestFocus();
 				}

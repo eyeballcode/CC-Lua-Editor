@@ -7,14 +7,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Date;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,22 +41,22 @@ public class BootstrapScreen {
 			bar.setValue(100);
 			f.dispose();
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 	}
 
 	private boolean checkOpFileExists() {
-		if (!new File(System.getProperty("user.home") + "/luaprojects/")
+		if (!new File(Utils.workingDir)
 				.exists()) {
 			f = new JFrame("Font check");
 
-			new File(System.getProperty("user.home") + "/luaprojects/")
+			new File(Utils.workingDir)
 					.mkdirs();
 			System.out.println("[WARN] " + new Date() + ": Folder "
-					+ System.getProperty("user.home")
-					+ "/luaprojects/ does not exists!");
+					+ Utils.workingDir);
 			System.out.println("[INFO] " + new Date() + ": Generating "
-					+ System.getProperty("user.home") + "/luaprojects/" + "!");
+					+ Utils.workingDir + "!");
 			JButton y = new JButton("Yes");
 			JButton n = new JButton("No");
 			y.addActionListener(new ActionListener() {
@@ -76,7 +72,7 @@ public class BootstrapScreen {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					f.dispose();
-					JOptionPane.showMessageDialog(f, "Go to options, then click set font.");
+					JOptionPane.showMessageDialog(f, "Go to options, then click \"Download Minecraftia font\".");
 				}
 
 			});
@@ -97,17 +93,14 @@ public class BootstrapScreen {
 			f.setVisible(true);
 		}
 
-		if (!new File(System.getProperty("user.home")
-				+ "/luaprojects/options.txt").exists()) {
-			Utils.createFile(System.getProperty("user.home")
-					+ "/luaprojects/options.txt");
+		if (!new File(Utils.workingDir + "options.txt").exists()) {
+			Utils.createFile(Utils.workingDir + "options.txt");
 
 			System.out.println("[WARN] " + new Date()
 					+ ": Options.txt not found!");
 			System.out.println("[INFO] " + new Date()
 					+ ": Generating options.txt!");
-			Utils.createFile(System.getProperty("user.home")
-					+ "/luaprojects/options.txt");
+			Utils.createFile(Utils.workingDir + "options.txt");
 		}
 
 		return true;
