@@ -21,6 +21,7 @@ public class ControlKeyLisener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
 			System.out.println("Control! Yay!");
+			ProjectEditorScreen.shouldBreak = true;
 		}
 	}
 

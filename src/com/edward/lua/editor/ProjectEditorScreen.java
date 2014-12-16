@@ -10,12 +10,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
+import com.edward.bootstrap.MainFrame.MainGIFScreen;
 import com.edward.utils.EyeThrowableDealer;
 
 public class ProjectEditorScreen extends JFrame {
 	
 
 	private static final long serialVersionUID = 8935429240415542618L;
+
+	public static boolean shouldBreak;
 
 	private JTextArea ta = new JTextArea() {
 
@@ -27,7 +30,7 @@ public class ProjectEditorScreen extends JFrame {
 	};
 
 	private JTextArea getEditorField() {
-		ta.addKeyListener(new ControlKeyLisener());
+		ta.addKeyListener(new MultiKeyPressListener());
 		ta.setOpaque(true);
 		ta.setBackground(Color.BLACK);
 		ta.setForeground(Color.WHITE);
