@@ -18,6 +18,13 @@ public class MultiKeyPressListener implements KeyListener {
 			if(keys[0] == KeyEvent.VK_CONTROL && keys[1] == KeyEvent.VK_S) {
 				System.out.println("Ctrl+S");
 			}
+		}	
+		if (pressed.size() == 2) {
+			Integer[] keys = pressed.toArray(new Integer[0]);
+			
+			if(keys[0] == KeyEvent.VK_CONTROL && keys[1] == KeyEvent.VK_Q) {
+				 new ProjectEditorScreen().destroy();
+			}
 		}
 	}
 

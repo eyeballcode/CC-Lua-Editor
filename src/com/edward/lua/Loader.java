@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import com.edward.bootstrap.MainFrame.MainGIFScreen;
-import com.edward.lua.editor.ProjectEditorScreen;
+import com.edward.lua.editor.ProjectEditorOptionsScreen;
 import com.edward.utils.EyeThrowableDealer;
 import com.edward.utils.Utils;
 
@@ -127,7 +127,7 @@ public class Loader extends JFrame {
 					Utils.checkFolderExists(Utils.workingDir + "Workspace/" + text);
 					System.out.println("[INFO] " + new Date() + ": Opening folder: " + Utils.workingDir + "Workspace/" + text);
 					dispose();
-					new ProjectEditorScreen();
+					new ProjectEditorOptionsScreen(text);
 					} catch (Exception e1) {
 						EyeThrowableDealer etd = new EyeThrowableDealer();
 						etd.load(e1);
