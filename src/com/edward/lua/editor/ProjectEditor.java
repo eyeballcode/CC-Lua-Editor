@@ -11,13 +11,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Date;
 
-import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
 import javax.swing.border.Border;
 
 import com.edward.utils.EyeThrowableDealer;
 import com.edward.utils.Utils;
 
-public class ProjectEditor extends JTextPane {
+public class ProjectEditor extends JEditorPane {
+	
 
 	private static final long serialVersionUID = 4859236933649991436L;
 
@@ -27,18 +28,22 @@ public class ProjectEditor extends JTextPane {
 	}
 
 	public ProjectEditor() {
+		super();
+		BlockCaret b = new BlockCaret();
+		b.setBlinkRate(500);
+		setCaret(b);
 		setOpaque(true);
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
 		setFont(new Font("Minecraftia", Font.PLAIN, 17));
 		setSize(623, 354);
 		setLocation(23, 21);
-		addKeyListener(new ControlKeyLisener());
 		addKeyListener(new KeyWordListener());
 	}
 	
 	public boolean open(String fileName, String projectName) {
 		try{
+		addKeyListener(new ControlKeyLisener(projectName));
 		setText("");
 		fileName = Utils.workingDir + "Workspace/" + projectName + "/" + fileName;
 		System.out.println("[INFO] " + new Date()

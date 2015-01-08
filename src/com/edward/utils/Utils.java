@@ -9,10 +9,11 @@ import java.net.URI;
 
 import javax.swing.ImageIcon;
 
-import com.edward.lua.ProjectException;
-
 public class Utils {
 	
+	/**
+	 * Contains a "/" behind!
+	 */
 	public static String workingDir = System.getProperty("user.home") + "/luaprojects/";
 	private static String jvmName;
 	private static int fallback;
@@ -23,7 +24,9 @@ public class Utils {
 			FileWriter fw = new FileWriter(f);
 			fw.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			EyeThrowableDealer etd = new EyeThrowableDealer();
+			etd.load(e);
+			etd.print();
 		}
 		
 	}

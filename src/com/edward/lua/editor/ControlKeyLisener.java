@@ -3,6 +3,8 @@ package com.edward.lua.editor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.PrintWriter;
@@ -12,9 +14,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
 public class ControlKeyLisener implements KeyListener {
+	
+	public ControlKeyLisener(String prjName) {
+		
+	}
 	
 	JFrame ctrlFrame = new JFrame();
 
@@ -75,6 +82,14 @@ public class ControlKeyLisener implements KeyListener {
 		b.setSize(new Dimension(300, 30));
 		b.setLocation(35, 68);
 		b.setFont(new Font("Minecraftia", Font.PLAIN, 17));
+		b.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(new JFrame(), "Save to file ");
+			}
+			
+		});
 		return b;
 	}
 
